@@ -1,0 +1,5 @@
+screen_003	= $c055	; ?
+loop_image3	= $c011
+infloop_image3	= $c044
+wait_first_line_image3	= $c044
+show_image3	= $c000	; unused
