@@ -115,9 +115,15 @@ do_every_ten_seconds
         cmp #$01
         beq do_slide2
         cmp #$02
+        beq empty_slide
+        cmp #$03
         beq do_slide3
         rts
 
+empty_slide
+        inc last_slide_number
+        jsr out
+        rts
 
 do_slide2
         inc last_slide_number
