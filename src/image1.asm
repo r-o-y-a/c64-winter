@@ -30,16 +30,9 @@ loop_image1
     inx
     bne loop_image1
 
-infloop_image1
-wait_first_line_image1
-    ldx $d012
-    lda $d011
-    and #$80
-    bne wait_first_line_image1
-    cpx #0
-    bne wait_first_line_image1
-    jmp infloop_image1
 
+
+rts
 
 ; PETSCII memory layout (example for a 40x25 screen)
 ; byte  0         = border color
@@ -98,5 +91,3 @@ screen_001
 !byte 14,14,14,9,9,5,9,14,14,14,14,14,14,14,9,9,9,9,9,9,9,9,9,14,14,14,5,9,9,9,9,9,9,9,9,9,9,9,9,9
 !byte 14,9,9,9,9,9,9,9,9,14,14,14,14,9,9,9,9,9,9,9,9,9,9,9,14,14,9,9,9,9,9,9,9,9,9,9,9,9,9,9
 !byte 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
-
-rts
