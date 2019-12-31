@@ -13,6 +13,9 @@
     	!byte $31,$35,$32,$00,$00,$00         ; puts BASIC line 2012 SYS 49152
     	* = $c000                             ; start address for 6502 code
 
+        jsr sid_init
+        jsr sid_play
+
     	sei
         
 
@@ -22,6 +25,7 @@
         
         lda #$01
         sta last_slide_number
+
 
         jsr show_image1
 
