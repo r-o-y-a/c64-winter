@@ -3,6 +3,7 @@
 
     	!source "src/constants.asm"
         !source "src/load_res.asm"
+        !source "src/delay.asm"
         !source "src/init_clearscreen.asm"
         !source "src/image1.asm"
         !source "src/image2.asm"
@@ -25,7 +26,6 @@
         
         lda #$01
         sta last_slide_number
-
 
         jsr show_image1
 
@@ -116,13 +116,18 @@ do_every_ten_seconds
         beq do_slide2
         cmp #$02
         beq do_slide3
-
         rts
 
 
 do_slide2
         inc last_slide_number
         jsr show_image2
+
+
+        jsr delay
+        jsr color_border
+
+
         jsr out
         rts
 
@@ -132,7 +137,16 @@ do_slide3
         jsr out
         rts
 
-        
+
+color_border ;for debugging purposes
+        lda #$06
+        sta $d020
+        rts
+flash_border ;for debugging purposes
+        inc $d020
+        jsr flash_border
+        rts
+
 
         jmp $ea31      ; return to Kernel routine
 	
