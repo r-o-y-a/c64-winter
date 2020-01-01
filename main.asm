@@ -130,8 +130,8 @@ do_slide2
         jsr show_image2
 
 
-        jsr delay
-        jsr color_border
+        ;jsr delay
+        ;jsr color_border
 
 
         jsr out

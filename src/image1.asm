@@ -31,6 +31,167 @@ loop_image1
     bne loop_image1
 
 
+    jsr delay
+    jsr delay
+    jsr delay
+    jsr delay
+    jsr delay
+
+    ;1
+    lda #$2a ; 2a = *, 2e = .
+    sta $0540+11
+
+    ;2
+    lda #$2e
+    sta $04C8+15
+
+    ;3
+    lda #$2e
+    sta $0568+21
+
+    jsr delay
+
+    ;4
+    lda #$2e
+    sta $0478+26
+
+    jsr delay
+    jsr delay
+    jsr delay
+
+    ;5
+    lda #$2e
+    sta $04F0+33
+
+    ;6
+    lda #$2a
+    sta $0478+37
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0540+11
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $04F0+33
+
+
+    lda #$2a
+    sta $0540+11
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $04C8+15
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $04C8+15
+
+    jsr delay
+
+    lda #$2a
+    sta $04F0+33
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $0540+11
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $04F0+33
+
+
+    lda #$2a
+    sta $0540+11
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $04C8+15
+
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $04F0+33
+
+
+    jsr delay
+    jsr delay
+
+
+    lda #$2e
+    sta $04C8+15
+
+    jsr delay
+
+    lda #$2a
+    sta $04F0+33
+
+    jsr delay
+    jsr delay
+
+    lda #$2a
+    sta $0568+21
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0540+11
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0568+21
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0478+37
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $04F0+33
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0568+21
+
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $04F0+33
+
+    jsr delay
+    jsr delay
+    jsr delay
+    jsr delay
+
+    lda #$2e
+    sta $0478+37
+
 
 rts
 
