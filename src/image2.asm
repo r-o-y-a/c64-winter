@@ -34,7 +34,7 @@ loop_image2
 
     
 
-    ldy #$20 ; set duration for change windows
+    ldy #$15 ; set duration for change windows
 
 
 image2_change_windows
@@ -60,9 +60,6 @@ loop_colors
     rts
 
 stop
-    lda #$00
-    sta $da58+17
-    sta $da80+23
     rts
 
 colors

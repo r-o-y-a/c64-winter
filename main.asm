@@ -22,7 +22,7 @@
 
     	lda #$00 
         sta raster_counter
-        sta duration_counter
+        ;sta duration_counter
         
         lda #$00
         sta last_slide_number
@@ -65,7 +65,7 @@ irq     dec $d019        ; acknowledge IRQ and notify again on the next screen r
 
 
 main_loop   
-        lda #$fb ; (251)
+        lda #$96 ; (150 % 50 = 3 seconds)
 
 loop2   
         cmp $d012 ; wait until it reaches 251th raster line ($fb)
@@ -77,18 +77,18 @@ loop4
         cmp #$ff    ; check if counter reached 255 (5 seconds)
         bne out
 
-        lda duration_counter
-        cmp #$ff
-        bne loop5 ; set the duration counter to 255 and do the main loop again to reach 10 seconds
+        ;lda duration_counter
+        ;cmp #$ff
+        ;bne loop5 ; set the duration counter to 255 and do the main loop again to reach 10 seconds
     
 
-        lda #$00    ; reset both counters
+        lda #$00    
         sta raster_counter
-        sta duration_counter
+        ;sta duration_counter
 
 
         ;inc $d020
-        jsr do_every_ten_seconds     
+        jsr show_slides     
 
 
 out
@@ -99,27 +99,25 @@ loop3   cmp $d012
         jmp main_loop  
         rts
 
-loop5
-        lda #$ff
-        sta duration_counter
+;loop5
+;        lda #$ff
+;        sta duration_counter
+;
+;        lda #$00
+;        sta raster_counter 
+;        
+;        jmp out
+;
+;        rts
 
-        lda #$00
-        sta raster_counter 
-        
-        jmp out
 
-        rts
-
-
-do_every_ten_seconds
+show_slides
         lda last_slide_number
         cmp #$00
         beq do_slide1
         cmp #$01
         beq do_slide2
         cmp #$02
-        beq empty_slide
-        cmp #$03
         beq do_slide3
         rts
 
