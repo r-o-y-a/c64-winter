@@ -24,7 +24,7 @@
         sta raster_counter
         sta duration_counter
         
-        lda #$01
+        lda #$00
         sta last_slide_number
 
         jsr show_image1
@@ -87,6 +87,7 @@ loop4
         sta duration_counter
 
 
+        ;inc $d020
         jsr do_every_ten_seconds     
 
 
@@ -112,6 +113,8 @@ loop5
 
 do_every_ten_seconds
         lda last_slide_number
+        cmp #$00
+        beq do_slide1
         cmp #$01
         beq do_slide2
         cmp #$02
@@ -125,15 +128,13 @@ empty_slide
         jsr out
         rts
 
+do_slide1
+        inc last_slide_number
+        jsr image1_twinkle_stars
+
 do_slide2
         inc last_slide_number
         jsr show_image2
-
-
-        ;jsr delay
-        ;jsr color_border
-
-
         jsr out
         rts
 

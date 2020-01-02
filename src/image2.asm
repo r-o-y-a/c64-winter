@@ -30,7 +30,46 @@ loop_image2
     inx
     bne loop_image2
 
-rts
+
+
+    
+
+    ldy #$20 ; set duration for change windows
+
+
+image2_change_windows
+    ldx #$08 ; number of colors
+
+loop_colors
+    lda colors,x
+    sta $da58+17
+    sta $da80+23
+
+    jsr delay
+
+    dey
+    cpy #$00
+    beq stop
+    
+    dex
+    cpx #$01
+    beq image2_change_windows
+
+    jsr loop_colors
+
+    rts
+
+stop
+    lda #$00
+    sta $da58+17
+    sta $da80+23
+    rts
+
+colors
+    !byte $01,$02,$03,$04,$05,$06,$07,$08,$09
+
+
+
 
 ; PETSCII memory layout (example for a 40x25 screen)
 ; byte  0         = border color
