@@ -22,12 +22,12 @@
 
     	lda #$00 
         sta raster_counter
-        ;sta duration_counter
         
         lda #$00
         sta last_slide_number
 
         jsr show_image1
+        jsr show_slides
 
 
         ; turn off other sources of interupts
@@ -58,14 +58,14 @@
         jmp *       ; infinite loop
 
 
-; custom interrupt routine -- whenever raster beam reaches line zero, this is executed
-irq     dec $d019        ; acknowledge IRQ and notify again on the next screen refresh
-
-
+                        ; custom interrupt routine -- whenever raster beam 
+                        ; reaches line zero, this is executed
+irq     dec $d019       ; acknowledge IRQ and notify again on the next 
+                        ; screen refresh
 
 
 main_loop   
-        lda #$96 ; (150 % 50 = 3 seconds)
+        lda #$fb
 
 loop2   
         cmp $d012 ; wait until it reaches 251th raster line ($fb)
@@ -74,22 +74,14 @@ loop2
 loop4   
         inc raster_counter 
         lda raster_counter
-        cmp #$ff    ; check if counter reached 255 (5 seconds)
-        bne out
-
-        ;lda duration_counter
-        ;cmp #$ff
-        ;bne loop5 ; set the duration counter to 255 and do the main loop again to reach 10 seconds
-    
+        cmp #$01    ; check if counter reached (decreased to 01 because
+        bne out     ; not using interrupt for now -- using delays instead)
 
         lda #$00    
         sta raster_counter
-        ;sta duration_counter
 
 
-        ;inc $d020
         jsr show_slides     
-
 
 out
         lda $d012
@@ -98,17 +90,6 @@ loop3   cmp $d012
 
         jmp main_loop  
         rts
-
-;loop5
-;        lda #$ff
-;        sta duration_counter
-;
-;        lda #$00
-;        sta raster_counter 
-;        
-;        jmp out
-;
-;        rts
 
 
 show_slides
@@ -119,11 +100,6 @@ show_slides
         beq do_slide2
         cmp #$02
         beq do_slide3
-        rts
-
-empty_slide
-        inc last_slide_number
-        jsr out
         rts
 
 do_slide1

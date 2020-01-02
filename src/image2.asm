@@ -34,7 +34,7 @@ loop_image2
 
     
 
-    ldy #$15 ; set duration for change windows
+    ldy #$20 ; set duration for change windows
 
 
 image2_change_windows
